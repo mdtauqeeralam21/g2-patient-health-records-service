@@ -1,12 +1,14 @@
 package com.pms.service;
 
 import java.util.List;
+
+import com.pms.exception.PatientVisitException;
 import com.pms.model.PatientVisitDetails;
 import com.pms.model.PrescriptionDetails;
 import com.pms.model.TestDetails;
 
 public interface PatientVisitService {
-	public PatientVisitDetails saveVisit(PatientVisitDetails pvd);
+	public PatientVisitDetails saveVisit(PatientVisitDetails pvd) throws PatientVisitException;
 	public PatientVisitDetails updateVisit(String visitId,PatientVisitDetails pvd);
 	public void deleteVisit(String pId);
 	public List<PatientVisitDetails> getAllVisit(String patientId);

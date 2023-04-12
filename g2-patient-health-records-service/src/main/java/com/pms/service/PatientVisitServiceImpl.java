@@ -2,11 +2,12 @@ package com.pms.service;
 
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
-import org.springframework.data.rest.webmvc.json.patch.PatchException;
 import org.springframework.stereotype.Service;
 
+import com.pms.exception.PatientVisitException;
 import com.pms.model.PatientVisitDetails;
 import com.pms.model.PrescriptionDetails;
 import com.pms.model.TestDetails;
@@ -28,11 +29,11 @@ public class PatientVisitServiceImpl implements PatientVisitService {
 	
 
 	@Override
-	public PatientVisitDetails saveVisit(PatientVisitDetails visit) {
+	public PatientVisitDetails saveVisit(PatientVisitDetails visit) throws PatientVisitException {
 
 		PatientVisitDetails result = patientRepo.save(visit);
 		if(result == null) {
-			throw new PatchException("visit details data not correct "+result);
+			throw new PatientVisitException("visit details data not correct "+result);
 			//return null;
 		}
 		
