@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.pms.exception.PatientVisitException;
 import com.pms.model.PatientVisitDetails;
 import com.pms.model.PrescriptionDetails;
 import com.pms.model.TestDetails;
@@ -68,7 +69,7 @@ public class PatientVisitRestController {
 	
 	
 	@PutMapping("/{visitId}")
-	public ResponseEntity<?> update(@PathVariable("visitId") String visitId,@RequestBody PatientVisitDetails patientVisit){
+	public ResponseEntity<?> update(@PathVariable("visitId") String visitId,@RequestBody PatientVisitDetails patientVisit) throws PatientVisitException{
 
 	//check for id exist
 	if(visitId!=null) {
@@ -81,7 +82,7 @@ public class PatientVisitRestController {
 	}
 	
 	@DeleteMapping("/{visitId}")
-	public ResponseEntity<?> deleteVisit(@PathVariable String visitId){
+	public ResponseEntity<?> deleteVisit(@PathVariable String visitId) throws PatientVisitException{
 		if(visitId!=null) {
 		service.deleteVisit(visitId);
 		return new ResponseEntity<String>("Visit Deleted",HttpStatus.ACCEPTED);
@@ -95,7 +96,7 @@ public class PatientVisitRestController {
 	//============================Test Details==========================================
 	
 	@PostMapping("/test/{visitId}")
-	public ResponseEntity<?> saveTest(@PathVariable("visitId") String visitId,@RequestBody TestDetails test){
+	public ResponseEntity<?> saveTest(@PathVariable("visitId") String visitId,@RequestBody TestDetails test) throws PatientVisitException{
 		TestDetails status = service.saveTest(visitId, test);
 	    return new ResponseEntity<>(status, HttpStatus.CREATED);
 	}
@@ -114,7 +115,7 @@ public class PatientVisitRestController {
 	}
 	
 	@DeleteMapping("/test/{testId}")
-	public ResponseEntity<String> deleteTestById(@PathVariable("testId") String testId)
+	public ResponseEntity<String> deleteTestById(@PathVariable("testId") String testId) throws PatientVisitException
 	{
 
 	if(testId!=null) { 
@@ -144,7 +145,7 @@ public class PatientVisitRestController {
 	
 	@PostMapping("/prescription/{visitId}")
 	public ResponseEntity<?> savePrescription(@PathVariable("visitId") String visitId,
-														@RequestBody PrescriptionDetails prescribe){
+														@RequestBody PrescriptionDetails prescribe) throws PatientVisitException{
 		PrescriptionDetails status = service.savePrescription(visitId, prescribe);
 
 	    return new ResponseEntity<PrescriptionDetails>(status, HttpStatus.CREATED);
@@ -152,7 +153,7 @@ public class PatientVisitRestController {
 	
 	
 	@GetMapping("/prescription/{visitId}")
-	public ResponseEntity<?> getAllPriscriptions(@PathVariable("visitId") String visitId){
+	public ResponseEntity<?> getAllPriscriptions(@PathVariable("visitId") String visitId) throws PatientVisitException{
 	
 	List<PrescriptionDetails> prescriptions =service.getAllPrescriptions(visitId);
 	if(prescriptions==null || prescriptions.isEmpty()) {
