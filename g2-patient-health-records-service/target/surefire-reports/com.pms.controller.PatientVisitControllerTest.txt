@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.pms.controller.PatientVisitControllerTest
+-------------------------------------------------------------------------------
+Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 23.669 s - in com.pms.controller.PatientVisitControllerTest

@@ -1,0 +1,3 @@
+com\pms\PatientHealthRecordsApplicationTests.class
+com\pms\service\PatientVisitServiceImplTest.class
+com\pms\controller\PatientVisitControllerTest.class
