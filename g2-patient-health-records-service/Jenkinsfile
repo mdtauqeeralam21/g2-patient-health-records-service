@@ -8,7 +8,7 @@ stage('Checkout'){
 
 steps{
 
-git branch: "main", url: 'https://github.com/chiranjiv09/g2-patient-health-records-service.git'
+git branch: "main", url: 'https://github.com/mdtauqeeralam21/g2-patient-health-records-service.git'
 
 }
 
@@ -50,7 +50,7 @@ stage('Login') {
 
 steps {
 
-sh 'echo dockerhub123 | docker login -u 8962311939 --password-stdin'
+sh 'echo Tauqeer@786 | docker login -u tauqeeralam21 --password-stdin'
 
 }
 
