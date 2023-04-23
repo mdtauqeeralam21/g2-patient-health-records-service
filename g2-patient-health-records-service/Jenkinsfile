@@ -40,7 +40,7 @@ stage('DockerBuild') {
 
 steps {
 
-sh 'docker build -t services/g2-patient-health-records-service:latest .'
+sh 'docker build -t services/health-service:latest .'
 
 }
 
@@ -60,7 +60,7 @@ stage('Push') {
 
 steps {
 
-sh 'docker push services/g2-patient-health-records-service'
+sh 'docker push services/health-service'
 
 }
 
