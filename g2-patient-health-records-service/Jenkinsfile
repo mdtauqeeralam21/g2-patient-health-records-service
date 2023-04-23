@@ -18,7 +18,9 @@ stage('Build'){
 
 steps{
 
-sh 'chmod a+x /mvnw'
+sh 'cd g2-patient-health-records-service'
+
+sh 'chmod a+x mvnw'
 
 sh './mvnw clean package -DskipTests=true'
 
