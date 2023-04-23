@@ -17,8 +17,10 @@ git branch: "main", url: 'https://github.com/mdtauqeeralam21/g2-patient-health-r
 stage('Build'){
 
 steps{
-
+sh 'ls'
 sh 'cd g2-patient-health-records-service'
+sh 'pwd'
+sh 'ls'
 
 sh 'chmod a+x mvnw'
 
