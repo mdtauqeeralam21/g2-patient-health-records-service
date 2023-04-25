@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.pms.entity.PatientVisitDetails;
-import com.pms.entity.PrescriptionDetails;
-import com.pms.entity.TestDetails;
 import com.pms.exception.PatientVisitException;
+import com.pms.model.PatientVisitDetails;
+import com.pms.model.PrescriptionDetails;
+import com.pms.model.TestDetails;
 import com.pms.service.PatientVisitService;
 
 @RestController
@@ -30,7 +30,7 @@ import com.pms.service.PatientVisitService;
 
 	
 	@PostMapping(&quot;/{patientId}&quot;)
-	public ResponseEntity&lt;?&gt; save(@PathVariable String patientId,@RequestBody PatientVisitDetails patientVisit) throws PatientVisitException{
+	public ResponseEntity&lt;?&gt; save(@PathVariable String patientId,@RequestBody PatientVisitDetails patientVisit){
 	try {
 <span class="fc" id="L35">	patientVisit.setPatientId(patientId);</span>
 <span class="fc" id="L36">	PatientVisitDetails visit=service.saveVisit(patientVisit);</span>
@@ -154,7 +154,7 @@ import com.pms.service.PatientVisitService;
 	
 	@GetMapping(&quot;/prescription/{visitId}&quot;)
 	public ResponseEntity&lt;?&gt; getAllPriscriptions(@PathVariable(&quot;visitId&quot;) String visitId) throws PatientVisitException{
-	//ResponseEntity&lt;?&gt; resp=null;
+	
 <span class="fc" id="L158">	List&lt;PrescriptionDetails&gt; prescriptions =service.getAllPrescriptions(visitId);</span>
 <span class="pc bpc" id="L159" title="1 of 4 branches missed.">	if(prescriptions==null || prescriptions.isEmpty()) {</span>
 <span class="fc" id="L160">		String message=&quot;No Data Found&quot;;</span>

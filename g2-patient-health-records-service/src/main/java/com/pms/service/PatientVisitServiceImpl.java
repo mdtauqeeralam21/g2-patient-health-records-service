@@ -6,10 +6,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.pms.entity.PatientVisitDetails;
-import com.pms.entity.PrescriptionDetails;
-import com.pms.entity.TestDetails;
 import com.pms.exception.PatientVisitException;
+import com.pms.model.PatientVisitDetails;
+import com.pms.model.PrescriptionDetails;
+import com.pms.model.TestDetails;
 import com.pms.repositories.PatientVisitRepo;
 import com.pms.repositories.PrescriptionRepo;
 import com.pms.repositories.TestRepo;
@@ -28,9 +28,9 @@ public class PatientVisitServiceImpl implements PatientVisitService {
 	
 
 	@Override
-	public PatientVisitDetails saveVisit(PatientVisitDetails pvd) throws PatientVisitException {
+	public PatientVisitDetails saveVisit(PatientVisitDetails visit) throws PatientVisitException {
 
-		PatientVisitDetails result = patientRepo.save(pvd);
+		PatientVisitDetails result = patientRepo.save(visit);
 		if(result == null) {
 			throw new PatientVisitException("visit details data not correct "+result);
 			//return null;
@@ -56,12 +56,12 @@ public class PatientVisitServiceImpl implements PatientVisitService {
 	@Override
 	public void deleteVisit(String visitId) throws PatientVisitException {
 		if(patientRepo.existsById(visitId)) {
-			patientRepo.deleteById(visitId);
+			   patientRepo.deleteById(visitId);
 			}else {
 				throw new PatientVisitException("Visit Id Not found ");
 			}
 
-		//patientRepo.deleteById(visitId);
+	
 	}
 
 	@Override
@@ -83,7 +83,7 @@ public class PatientVisitServiceImpl implements PatientVisitService {
 		TestDetails status=patientRepo.findById(visitId).map(visit->{
 		      test.setVisitDetails(visit);
 		      return testRepo.save(test);
-		    }).orElseThrow(() -> new PatientVisitException("Invalid visit ID "));
+		    }).orElseThrow(() -> new PatientVisitException("Id Not found "));
 		
 		return status;
 		
@@ -127,11 +127,11 @@ public class PatientVisitServiceImpl implements PatientVisitService {
 		PrescriptionDetails status=patientRepo.findById(visitId).map(visit->{
 		      prescription.setVisitDetails(visit);
 		      return prescriptionRepo.save(prescription);
-		    }).orElseThrow(() -> new PatientVisitException("Invalid visit ID"));
+		    }).orElseThrow(() -> new PatientVisitException("Visit id Not found "));
 		
 		return status;
 		
-		//return prescriptionRepo.save(pd).getPrescriptionName();
+	
 	}
 
 
@@ -148,3 +148,6 @@ public class PatientVisitServiceImpl implements PatientVisitService {
 	
 	
 }
+	
+	
+	

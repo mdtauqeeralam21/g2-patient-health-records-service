@@ -6,10 +6,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.pms.entity.PatientVisitDetails;
-import com.pms.entity.PrescriptionDetails;
-import com.pms.entity.TestDetails;
 import com.pms.exception.PatientVisitException;
+import com.pms.model.PatientVisitDetails;
+import com.pms.model.PrescriptionDetails;
+import com.pms.model.TestDetails;
 import com.pms.repositories.PatientVisitRepo;
 import com.pms.repositories.PrescriptionRepo;
 import com.pms.repositories.TestRepo;
@@ -28,9 +28,9 @@ import com.pms.repositories.TestRepo;
 	
 
 	@Override
-	public PatientVisitDetails saveVisit(PatientVisitDetails pvd) throws PatientVisitException {
+	public PatientVisitDetails saveVisit(PatientVisitDetails visit) throws PatientVisitException {
 
-<span class="fc" id="L33">		PatientVisitDetails result = patientRepo.save(pvd);</span>
+<span class="fc" id="L33">		PatientVisitDetails result = patientRepo.save(visit);</span>
 <span class="fc bfc" id="L34" title="All 2 branches covered.">		if(result == null) {</span>
 <span class="fc" id="L35">			throw new PatientVisitException(&quot;visit details data not correct &quot;+result);</span>
 			//return null;
@@ -56,12 +56,12 @@ import com.pms.repositories.TestRepo;
 	@Override
 	public void deleteVisit(String visitId) throws PatientVisitException {
 <span class="fc bfc" id="L58" title="All 2 branches covered.">		if(patientRepo.existsById(visitId)) {</span>
-<span class="fc" id="L59">			patientRepo.deleteById(visitId);</span>
+<span class="fc" id="L59">			   patientRepo.deleteById(visitId);</span>
 			}else {
 <span class="fc" id="L61">				throw new PatientVisitException(&quot;Visit Id Not found &quot;);</span>
 			}
 
-		//patientRepo.deleteById(visitId);
+	
 <span class="fc" id="L65">	}</span>
 
 	@Override
@@ -83,7 +83,7 @@ import com.pms.repositories.TestRepo;
 <span class="fc" id="L83">		TestDetails status=patientRepo.findById(visitId).map(visit-&gt;{</span>
 <span class="nc" id="L84">		      test.setVisitDetails(visit);</span>
 <span class="nc" id="L85">		      return testRepo.save(test);</span>
-<span class="pc" id="L86">		    }).orElseThrow(() -&gt; new PatientVisitException(&quot;Invalid visit ID &quot;));</span>
+<span class="pc" id="L86">		    }).orElseThrow(() -&gt; new PatientVisitException(&quot;Id Not found &quot;));</span>
 		
 <span class="nc" id="L88">		return status;</span>
 		
@@ -127,11 +127,11 @@ import com.pms.repositories.TestRepo;
 <span class="fc" id="L127">		PrescriptionDetails status=patientRepo.findById(visitId).map(visit-&gt;{</span>
 <span class="nc" id="L128">		      prescription.setVisitDetails(visit);</span>
 <span class="nc" id="L129">		      return prescriptionRepo.save(prescription);</span>
-<span class="pc" id="L130">		    }).orElseThrow(() -&gt; new PatientVisitException(&quot;Invalid visit ID&quot;));</span>
+<span class="pc" id="L130">		    }).orElseThrow(() -&gt; new PatientVisitException(&quot;Visit id Not found &quot;));</span>
 		
 <span class="nc" id="L132">		return status;</span>
 		
-		//return prescriptionRepo.save(pd).getPrescriptionName();
+	
 	}
 
 
@@ -148,4 +148,7 @@ import com.pms.repositories.TestRepo;
 	
 	
 }
+	
+	
+	
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
