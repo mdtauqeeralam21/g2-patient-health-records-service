@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import com.pms.model.PatientVisitDetails;
+import com.pms.entity.PatientVisitDetails;
 
 public interface PatientVisitRepo extends JpaRepository<PatientVisitDetails, Serializable> {
 	

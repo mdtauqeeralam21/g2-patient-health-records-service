@@ -8,7 +8,7 @@ stage('Checkout'){
 
 steps{
 
-git branch: "main", url: 'https://github.com/mdtauqeeralam21/g2-patient-health-records-service.git'
+git branch: "main", url: 'https://github.com/chiranjiv09/g2-patient-health-records-service.git'
 
 }
 
@@ -17,8 +17,6 @@ git branch: "main", url: 'https://github.com/mdtauqeeralam21/g2-patient-health-r
 stage('Build'){
 
 steps{
-
-sh 'cd g2-patient-health-records-service'
 
 sh 'chmod a+x mvnw'
 
@@ -42,7 +40,7 @@ stage('DockerBuild') {
 
 steps {
 
-sh 'docker build -t services/health-service:latest .'
+sh 'docker build -t services/g2-patient-health-records-service:latest .'
 
 }
 
@@ -52,7 +50,7 @@ stage('Login') {
 
 steps {
 
-sh 'echo Tauqeer@786 | docker login -u tauqeeralam21 --password-stdin'
+sh 'echo dockerhub123 | docker login -u 8962311939 --password-stdin'
 
 }
 
@@ -62,7 +60,7 @@ stage('Push') {
 
 steps {
 
-sh 'docker push services/health-service'
+sh 'docker push services/g2-patient-health-records-service'
 
 }
 

@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import com.pms.model.TestDetails;
+import com.pms.entity.TestDetails;
 
 
 public interface TestRepo extends JpaRepository<TestDetails, Serializable> {

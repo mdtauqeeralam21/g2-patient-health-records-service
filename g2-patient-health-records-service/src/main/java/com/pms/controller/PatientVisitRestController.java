@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.pms.entity.PatientVisitDetails;
+import com.pms.entity.PrescriptionDetails;
+import com.pms.entity.TestDetails;
 import com.pms.exception.PatientVisitException;
-import com.pms.model.PatientVisitDetails;
-import com.pms.model.PrescriptionDetails;
-import com.pms.model.TestDetails;
 import com.pms.service.PatientVisitService;
 
 @RestController
@@ -30,7 +30,7 @@ public class PatientVisitRestController {
 
 	
 	@PostMapping("/{patientId}")
-	public ResponseEntity<?> save(@PathVariable String patientId,@RequestBody PatientVisitDetails patientVisit){
+	public ResponseEntity<?> save(@PathVariable String patientId,@RequestBody PatientVisitDetails patientVisit) throws PatientVisitException{
 	try {
 	patientVisit.setPatientId(patientId);
 	PatientVisitDetails visit=service.saveVisit(patientVisit);
@@ -154,7 +154,7 @@ public class PatientVisitRestController {
 	
 	@GetMapping("/prescription/{visitId}")
 	public ResponseEntity<?> getAllPriscriptions(@PathVariable("visitId") String visitId) throws PatientVisitException{
-	
+	//ResponseEntity<?> resp=null;
 	List<PrescriptionDetails> prescriptions =service.getAllPrescriptions(visitId);
 	if(prescriptions==null || prescriptions.isEmpty()) {
 		String message="No Data Found";

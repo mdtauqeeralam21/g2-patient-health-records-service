@@ -1,4 +1,4 @@
-FROM openjdk:17-alpine
+FROM openjdk:17
 
 EXPOSE 9006
 
