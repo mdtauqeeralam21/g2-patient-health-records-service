@@ -163,4 +163,18 @@ public class PatientVisitRestController {
 		return new ResponseEntity<List<PrescriptionDetails>>(prescriptions,HttpStatus.OK);
 		}
 	}
+
+        @GetMapping("/allergies")
+	public ResponseEntity<Object[]> getAllergies(){
+		Object[] list=template.getForObject("http://localhost:9002/api/v1/allergies",Object[].class);
+		return new ResponseEntity<Object[]>(list, HttpStatus.OK);
+		
+	}
+	
+	@GetMapping("/allergy")
+	public ResponseEntity<Object> getAllergy(@RequestParam("/allergyId") String allergyId){
+		Object allergy=template.getForObject("http://localhost:9002/api/v1/allergy?allergyId="+allergyId,Object.class);
+		return new ResponseEntity<Object>(allergy, HttpStatus.OK);
+		
+	}
 }
